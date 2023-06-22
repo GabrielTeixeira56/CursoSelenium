@@ -6,7 +6,6 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
 public class TesteCadastro {
 	private WebDriver driver = new ChromeDriver();
 	private CampoTreinamentoPage page;
@@ -38,13 +37,13 @@ public class TesteCadastro {
 		page.setEsporte("Karate");
 		page.cadastrar();
 		
-		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
-		Assert.assertTrue(page.obterNomeCadastro().endsWith("Gabriel"));
-		Assert.assertTrue(page.obterSobrenomeCadastro().endsWith("Teixeira"));
-		Assert.assertTrue(page.obterSexoCadastro().endsWith("Masculino"));
-		Assert.assertTrue(page.obterComidaCadastro().endsWith("Pizza"));
-		Assert.assertTrue(page.obterEscolaridadeCadastro().endsWith("superior"));
-		Assert.assertTrue(page.obterEsporteCadastro().endsWith("Karate"));
+		Assert.assertEquals("Cadastrado!", page.obterResultadoCadastro());
+		Assert.assertEquals("Gabriel", page.obterNomeCadastro());
+		Assert.assertEquals("Teixeira", page.obterSobrenomeCadastro());
+		Assert.assertEquals("Masculino", page.obterSexoCadastro());
+		Assert.assertEquals("Pizza", page.obterComidaCadastro());
+		Assert.assertEquals("superior", page.obterEscolaridadeCadastro());
+		Assert.assertEquals("Karate", page.obterEsporteCadastro());
 				
 		/*
 		//Campo nome

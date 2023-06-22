@@ -1,0 +1,52 @@
+/html/body/center/form/h3
+
+/html/body/center/form//h3
+
+//input[@id='buttonSimple']
+
+//*[@id='buttonSimple']
+
+//input[@value='Abrir Popup']
+
+//input[@type='button']
+
+//input[@type='button'][3]
+
+//input[@name='elementosForm:sexo' and @value='F']
+
+//ponto significa "Qualquer coisa"
+//*[.=' Feminino']
+//label[.=' Feminino']
+//*[contains(., "Feminino")]
+
+//ponto ponto para subir um nivel no codigo html
+//label[.=' Feminino']/../input
+
+/////////////////////////////////////////////
+		EXERCICIO
+		
+1. textfield nome
+//input[@id="elementosForm:nome"]
+
+2.radio: sexo feminino(sem usar o id)
+//input[@name="elementosForm:sexo" and @value="F"]
+
+3. label "Pizza" (sem buscar o texto)
+//label[@for="elementosForm:comidaFavorita:2"]/../input[@value="pizza"]
+//label[@for="elementosForm:comidaFavorita:2"]/../label[@value="pizza"]
+//*[@id='elementosForm:comidaFavorita:2']/following-sibling::label
+
+4. "usuario b" na tabela sem header
+//table[@id="tabelaSemJSF"]//td[.="Usuario B"]
+
+5. botão do elemento cujo nome é "Maria"
+//table[@id="elementosForm:tableUsuarios"]//td[.="Maria"]/..//input[@name="elementosForm:tableUsuarios:2:j_idt440"]
+//table[@id="elementosForm:tableUsuarios"]//td[.="Maria"]/..//input[@type="button"]
+
+6. Radio do elemento cujo nome e escolaridade seja "Doutorado"
+//table[@id="elementosForm:tableUsuarios"]//td[1][.="Doutorado"]/../td[2][.="Doutorado"]/..//input[@type="radio"]
+
+7. Textfield do segundo elemento com escolaridade "Superior"
+(//table[@id="elementosForm:tableUsuarios"]//td[2][.="Superior"])[2]/..//input[@type="text"]
+
+/////////////////////////////////////////////
