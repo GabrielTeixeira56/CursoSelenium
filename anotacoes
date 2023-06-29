@@ -1,3 +1,7 @@
+1. Criar projeto Maven
+2. Configurar POM.xml
+3. Adicionar o JUNIT nas library(Properties -> Java Build Path -> Libraries -> Add Library -> JUnit -> JUnit 3/4)
+
 /html/body/center/form/h3
 
 /html/body/center/form//h3
