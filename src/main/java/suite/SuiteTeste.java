@@ -1,16 +1,22 @@
 package suite;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import core.DriverFactory;
 import test.TesteCadastro;
-import test.TesteCampoTreinamento;
 import test.TesteRegrasCadastro;
 
 @RunWith(Suite.class)
 @SuiteClasses({
 	TesteCadastro.class,
 	TesteRegrasCadastro.class,
-	TesteCampoTreinamento.class
 })
-public class SuiteTeste {}
+public class SuiteTeste {
+	
+	@AfterClass
+	public static void finalizaTudo() {
+		DriverFactory.killDriver();
+	}
+}
