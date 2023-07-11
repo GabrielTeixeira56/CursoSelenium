@@ -1,30 +1,30 @@
+package test;
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
 import java.time.Duration;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import core.DSL;
+
 public class TesteSincronismo {
-	private WebDriver driver;
 	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
-		driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 	}
 	
 	@After
 	public void finaliza() {
-		driver.quit();
+		killDriver();
 	}
 	
 	@Test
@@ -41,9 +41,9 @@ public class TesteSincronismo {
 		dsl.clicarBotao("buttonDelay");
 		
 		//Espera Implícita
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		dsl.escrever("novoCampo", "Deu certo?");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class TesteSincronismo {
 		dsl.clicarBotao("buttonDelay");
 		
 		//espera Explícita
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
 		dsl.escrever("novoCampo", "Deu certo?"); 	
 	}

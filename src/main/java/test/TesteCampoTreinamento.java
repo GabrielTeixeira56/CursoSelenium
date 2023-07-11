@@ -1,30 +1,30 @@
+package test;
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-//import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import core.DSL;
+
 public class TesteCampoTreinamento {
-	private WebDriver driver = new ChromeDriver();
-	private DSL dsl;
+	private DSL dsl = new DSL();
 
 	@Before
 	public void inicializa() {
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
-	}
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");	}
 	
 	@After
 	public void finaliza() {
-		driver.quit();
+		killDriver();
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class TesteCampoTreinamento {
 	
 	@Test
 	public void deveVerificarValoresCombo() {
-		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
 		
@@ -84,7 +84,7 @@ public class TesteCampoTreinamento {
 		dsl.selecionarCombo("elementosForm:esportes", "O que eh esporte?");
 
 		
-		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:esportes"));
 		//A função Select serve para selecionar um elemento dentro de uma lista de elementos.
 		Select combo = new Select(element);
 
@@ -98,7 +98,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveIteragirComBotoes() {
 		dsl.clicarBotao("buttonSimple");
-		WebElement botao = driver.findElement(By.id("buttonSimple"));		
+		WebElement botao = getDriver().findElement(By.id("buttonSimple"));		
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	}
 	
@@ -116,7 +116,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void deveBuscarTextoNaPagina() {		
 		//Opção pouco performática
-		//Assert.assertTrue(driver.findElement(By.tagName("body"))
+		//Assert.assertTrue(getDriver().findElement(By.tagName("body"))
 		//			.getText().contains("Campo de Treinamento"));
 		
 	
@@ -138,12 +138,12 @@ public class TesteCampoTreinamento {
 	/***** JavaScript *****/
 	@Test
 	public void testJavascript() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		//js.executeScript("alert('Testando JS via Selenium')");
 		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via JS'");
 		js.executeScript("document.getElementById('elementosForm:sobrenome').type = 'radio'");
 		
-		WebElement element = driver.findElement(By.id("elementosForm:nome"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:nome"));
 		js.executeScript("arguments[0].style.border = arguments[1]", element, "solid 4px red");
 	}
 	 

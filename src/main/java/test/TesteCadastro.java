@@ -1,31 +1,27 @@
-import org.junit.After;
+package test;
+import static core.DriverFactory.getDriver;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TesteCadastro {
-	private WebDriver driver = new ChromeDriver();
+import core.BaseTest;
+import page.CampoTreinamentoPage;
+
+
+public class TesteCadastro extends BaseTest{
 	private CampoTreinamentoPage page;
 
 	@Before
 	public void inicializa() {
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		page = new CampoTreinamentoPage(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		page = new CampoTreinamentoPage();
 	}
 	
-	@After
-	public void finaliza() {
-		driver.quit();
-	}
-	
-	public void assertacao(String texto) {
-		page.cadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals(texto, alerta.getText());
-	}
+//	@After
+//	public void finaliza() {
+//		killDriver();
+//	}
 	 
 	@Test
 	public void deveRealizarCadastro() {
